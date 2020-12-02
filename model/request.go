@@ -1,6 +1,7 @@
 package model
 
 import (
+	"fmt"
 	"net/url"
 	"os"
 	"strings"
@@ -13,7 +14,7 @@ type Request struct {
 }
 
 func (r *Request) GenerateLink() string {
-	return os.Getenv("API_URL") + "?key=" + r.ApiKey + "&cx=" + r.SearchEngineId + "&q=" + r.GetQuery()
+	return fmt.Sprintf("%s?key=%s&cx=%s&q=%s", os.Getenv("API_URL"), r.ApiKey, r.SearchEngineId, r.GetQuery())
 }
 
 func (r *Request) GetQuery() string {
